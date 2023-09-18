@@ -1,3 +1,15 @@
+{{ define "userList"}}
+<div id="user-list">
+	{{ if .}}
+	<ul>
+	 {{range $user := .}}<li>{{.}}</li>{{end}}
+	</ul>
+	{{ else }}
+	<h5>No users</h5>
+	{{end}}
+	</div>
+{{end}}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,14 +19,14 @@
                 <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 	</head>
 	<body>
-{{ if .userList }}
-<ul>
- {{range $user := .userList}}<li>{{.}}</li>{{end}}
-</ul>
-{{ else }}
-<h5>No users</h5>
-{{end}}
+	
+	{{ template "userList" .userList}}
 
-		{{ .newUserForm}}	
+	<form hx-post="/user" hx-swap="outerHTML" hx-target="#user-list">
+		<input type="text" placeholder="Enter new user" name="user">
+		<button type="submit" >
+			Click Me
+		</button>
+	</form>
 	</body>
 </html>

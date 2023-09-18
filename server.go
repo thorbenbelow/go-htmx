@@ -28,11 +28,7 @@ func main() {
 
 	router.LoadHTMLGlob("templates/*")
 	newUserForm := template.HTML(`
-		<form hx-post="/user" hx-swap="none">
-		<input type="text" placeholder="Enter new user" name="user">
-	<button type="submit" >
-		Click Me
-	</button> </form>`)
+		`)
 
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.tmpl", map[string]interface{}{"newUserForm": newUserForm, "userList": db.users})
@@ -50,5 +46,5 @@ func handlePostUser(ctx *gin.Context) {
 	var newUser NewUser
 	ctx.Bind(&newUser)
 	db.addUser(newUser.User)
-	log.Print(newUser)
+	ctx.HTML(http.StatusOK, "UserList.tmpl", gin.H{"userList": db.users})
 }
