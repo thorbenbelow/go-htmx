@@ -16,6 +16,7 @@
 		<title></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
                 <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 	</head>
 	<body>
@@ -23,8 +24,8 @@
 	{{ template "userList" .userList}}
 
 	<form hx-post="/user" hx-swap="outerHTML" hx-target="#user-list">
-		<input type="text" placeholder="Enter new user" name="user">
-		<button type="submit" >
+		<input class="input" type="text" placeholder="Enter new user" name="user">
+		<button type="submit" class="button">
 			Click Me
 		</button>
 	</form>
