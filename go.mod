@@ -1,4 +1,4 @@
-module cap-iam
+module go-htmx 
 
 go 1.21.0
 
